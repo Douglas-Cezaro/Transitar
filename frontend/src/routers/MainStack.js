@@ -3,6 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import Preload from "../views/Preload";
+import Home from "../views/Home";
 import Login from "../views/Login";
 import Register from "../views/Register";
 import History from "../views/History";
@@ -15,12 +16,13 @@ const Stack = createStackNavigator();
 export default () => (
   <NavigationContainer>
     <Stack.Navigator
-      initialRouteName="MainTab"
+      initialRouteName="Login"
       screenOptions={{
         headerShown: false,
       }}
     >
       <Stack.Screen name="Preload" component={Preload} />
+      <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="History" component={History} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Profile" component={Profile} />
