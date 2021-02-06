@@ -33,6 +33,7 @@ export const Input = styled.TextInput`
   font-family: "RobotoRegular";
   color: rgba(0, 0, 0, 0.4);
   padding-left: 20px;
+  padding-right: 20px;
 `;
 
 export const TextError = styled.Text`
@@ -41,6 +42,8 @@ export const TextError = styled.Text`
   font-size: 15px;
   color: #fd5555;
   text-align: center;
+  margin-left: 10%;
+  margin-right: 10%;
 `;
 
 export const BtnRegister = styled.TouchableOpacity`
