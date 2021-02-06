@@ -9,6 +9,7 @@ import Register from "../views/Register";
 import History from "../views/History";
 import Profile from "../views/Profile";
 import Ranking from "../views/Ranking";
+import RecoverPassword from "../views/RecoverPassword";
 import MainTab from "../routers/MainTab";
 
 const Stack = createStackNavigator();
@@ -28,6 +29,7 @@ export default () => (
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="Ranking" component={Ranking} />
       <Stack.Screen name="Register" component={Register} />
+      <Stack.Screen name="RecoverPassword" component={RecoverPassword} />
       <Stack.Screen name="MainTab" component={MainTab} />
     </Stack.Navigator>
   </NavigationContainer>
