@@ -1,0 +1,16 @@
+{
+    "type": "mysql",
+    "host": "localhost",
+    "port": 3306,
+    "username": "root",
+    "password": "root",
+    "database": "transitar",
+    "synchronize": true,
+    "logging": ["query","error"],
+    "entities": [
+      "src/entity/*.ts"
+    ],
+    "cli": {
+      "entitiesDir": "src/entity"
+    }
+}
