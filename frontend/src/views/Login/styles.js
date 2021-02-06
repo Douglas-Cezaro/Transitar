@@ -46,11 +46,12 @@ export const Input = styled.TextInput`
   font-family: "RobotoRegular";
   color: rgba(0, 0, 0, 0.4);
   padding-left: 20px;
+  padding-right: 20px;
 `;
 
 export const TextError = styled.Text`
   margin-top: 2%;
-  font-family: "RobotoBold";
+  font-family: "RobotoRegular";
   font-size: 16px;
   color: #fd5555;
 `;
@@ -76,6 +77,13 @@ export const Styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 10,
     zIndex: 1,
+  },
+  InputError: {
+    borderColor: "rgba(255, 14, 14, 0.5)",
+    color: "rgba(255, 14, 14, 0.5)",
+  },
+  InputFocus: {
+    borderColor: "rgba(45, 142, 255, 0.7)",
   },
 });
 

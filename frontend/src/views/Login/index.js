@@ -32,22 +32,25 @@ export default function Login() {
   const [next, setNext] = useState("");
   const [errorUser, setErrorUser] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
+  const [focus, setFocus] = useState([]);
   const [message, setMessage] = useState([]);
   const navigation = useNavigation();
 
   const handlerApp = () => {
+    setFocus([]);
     if (user.trim() === "") {
       setErrorUser(true);
       const data = {
-        user: "Preencha o campo usuário",
+        user: "Preencha o campo e-mail/CPF",
       };
-      setMessage((message) => [...message, data]);
+      setMessage(data);
     } else if (password.trim() === "") {
       setErrorPassword(true);
       const data = {
         password: "Preencha o campo de senha",
       };
-      setMessage((message) => [...message, data]);
+
+      setMessage(data);
     } else {
       navigation.navigate("MainTab");
     }
@@ -73,11 +76,16 @@ export default function Login() {
           </ContainerTitle>
           <Form>
             <Input
-              placeholder="Usuário"
+              style={[
+                (errorUser && Styles.InputError) ||
+                  (focus.user && Styles.InputFocus),
+              ]}
+              placeholder="E-mail/CPF"
               returnKeyType={"next"}
               onFocus={() => {
                 setErrorUser(false);
                 setErrorPassword(false);
+                setFocus({ user: true });
               }}
               onChangeText={(text) => {
                 setUser(text);
@@ -86,20 +94,25 @@ export default function Login() {
                 next.focus();
               }}
             />
-            {errorUser && <TextError>{message[0].user}</TextError>}
+            {errorUser && <TextError>{message.user}</TextError>}
             <Input
+              style={[
+                (errorPassword && Styles.InputError) ||
+                  (focus.password && Styles.InputFocus),
+              ]}
               placeholder="Senha"
               secureTextEntry={true}
               onFocus={() => {
                 setErrorUser(false);
                 setErrorPassword(false);
+                setFocus({ password: true });
               }}
               ref={(input) => {
                 setNext(input);
               }}
               onChangeText={(text) => setPassword(text)}
             />
-            {errorPassword && <TextError>{message[1].password}</TextError>}
+            {errorPassword && <TextError>{message.password}</TextError>}
 
             <BtnLogin style={Styles.ButtonStyle} onPress={handlerApp}>
               <BtnText>Entrar</BtnText>
