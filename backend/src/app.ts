@@ -4,6 +4,7 @@ import * as cors from "cors";
 
 //importando arquivo de rota
 // import loginRouter from "./routers/login.router";
+import userRouter from "./routers/user.router";
 
 class App {
   public express: express.Application;
@@ -22,6 +23,7 @@ class App {
 
   private routes(): void {
     // this.express.use("/login", loginRouter);
+    this.express.use("/user", userRouter);
   }
 }
 
