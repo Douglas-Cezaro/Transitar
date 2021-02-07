@@ -14,7 +14,7 @@ import {
 } from "./styles";
 const ImageConfirmeEmail = require("../../../assets/images/ImageConfirmeEmail.png");
 
-export default function Ranking() {
+export default function ConfirmeEmail() {
   useEffect(() => {
     const backAction = () => {
       Alert.alert("", "Quer realmente fechar o aplicativo", [

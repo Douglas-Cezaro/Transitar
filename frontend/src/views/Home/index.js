@@ -1,5 +1,4 @@
 import React from "react";
-import { Text } from "react-native";
 import {
   Container,
   ContainerTitle,
@@ -25,6 +24,10 @@ export default function Profile() {
     navigation.navigate("Login");
   };
 
+  const handledReport = () => {
+    navigation.navigate("Report");
+  };
+
   return (
     <Container>
       <ContainerTitle>
@@ -34,7 +37,7 @@ export default function Profile() {
         <SubTitle>Qual tipo de Recurso você procura?</SubTitle>
       </ContainerSubTitle>
       <ContainerCard>
-        <Card style={Styles.CardStyle}>
+        <Card style={Styles.CardStyle} onPress={handledReport}>
           <CardContent>
             <CardImage source={ImageReport} />
             <CardText>Reportar</CardText>
