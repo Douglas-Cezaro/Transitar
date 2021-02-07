@@ -10,6 +10,8 @@ import History from "../views/History";
 import Profile from "../views/Profile";
 import Ranking from "../views/Ranking";
 import RecoverPassword from "../views/RecoverPassword";
+import ConfirmeEmail from "../views/ConfirmeEmail";
+import Report from "../views/Report";
 import MainTab from "../routers/MainTab";
 
 const Stack = createStackNavigator();
@@ -17,19 +19,21 @@ const Stack = createStackNavigator();
 export default () => (
   <NavigationContainer>
     <Stack.Navigator
-      initialRouteName="Register"
+      initialRouteName="Home"
       screenOptions={{
         headerShown: false,
       }}
     >
       <Stack.Screen name="Preload" component={Preload} />
       <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="History" component={History} />
       <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen name="Ranking" component={Ranking} />
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="RecoverPassword" component={RecoverPassword} />
+      <Stack.Screen name="ConfirmeEmail" component={ConfirmeEmail} />
+      <Stack.Screen name="Report" component={Report} />
+      <Stack.Screen name="History" component={History} />
+      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Ranking" component={Ranking} />
       <Stack.Screen name="MainTab" component={MainTab} />
     </Stack.Navigator>
   </NavigationContainer>

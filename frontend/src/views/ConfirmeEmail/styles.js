@@ -8,67 +8,34 @@ export const Container = styled.SafeAreaView`
 `;
 
 export const ContainerTitle = styled.View`
-  top: 7%;
+  top: 10%;
   align-items: center;
 `;
 
 export const Title = styled.Text`
+  text-align: center;
+  margin-left: 10%;
+  margin-right: 10%;
   font-family: "AveriaSansLibre_400Regular";
-  font-size: 25px;
+  font-size: 24px;
 `;
 
 export const ContainerImage = styled.View`
   align-items: center;
-  top: 10%;
-  width: 100%;
+  top: 20%;
+  flex: 1;
 `;
 
 export const ViewImage = styled.Image`
-  width: 250px;
-  height: 200px;
+  width: 350px;
+  height: 300px;
 `;
 
-export const ContainerSubTitle = styled.View`
-  top: 15%;
-  margin-left: 10%;
-  margin-right: 10%;
-`;
-
-export const SubTitle = styled.Text`
-  text-align: center;
-  font-family: "AveriaSansLibre_400Regular";
-  font-size: 20px;
-`;
-
-export const Scroller = styled.ScrollView``;
-
-export const Form = styled.SafeAreaView`
-  top: 20%;
-  height: 400px;
-
+export const ContainerBtn = styled.View`
   align-items: center;
-  justify-content: space-between;
-`;
-export const Input = styled.TextInput`
-  width: 85%;
-  height: 60px;
-  background: #fafafa;
-  border: 1px solid rgba(0, 0, 0, 0.13);
-  border-radius: 100px;
-  font-family: "RobotoRegular";
-  color: rgba(0, 0, 0, 0.4);
-  padding-left: 20px;
-  padding-right: 20px;
 `;
 
-export const TextError = styled.Text`
-  margin-top: 2%;
-  font-family: "RobotoRegular";
-  font-size: 16px;
-  color: #fd5555;
-`;
-
-export const BtnRecover = styled.TouchableOpacity`
+export const BtnBack = styled.TouchableOpacity`
   margin-top: 5%;
   margin-bottom: 5%;
   width: 85%;
@@ -96,12 +63,5 @@ export const Styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 10,
     zIndex: 1,
-  },
-  InputError: {
-    borderColor: "rgba(255, 14, 14, 0.5)",
-    color: "rgba(255, 14, 14, 0.5)",
-  },
-  InputFocus: {
-    borderColor: "rgba(45, 142, 255, 0.7)",
   },
 });

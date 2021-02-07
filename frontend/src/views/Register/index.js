@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { KeyboardAvoidingView, Keyboard } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import * as Animatable from "react-native-animatable";
+
 import {
   Container,
   Scroller,
@@ -12,9 +15,7 @@ import {
   Styles,
   TextError,
 } from "./styles";
-
-import { useNavigation } from "@react-navigation/native";
-import * as Animatable from "react-native-animatable";
+import { cpfMask, foneMask } from "../../utils/mask";
 
 const ImageRegister = require("../../../assets/images/ImageConductor.png");
 
@@ -53,6 +54,7 @@ export default function Register() {
   const _keyboardDidHide = () => {
     setClose(false);
   };
+
   const handlerApp = () => {
     setFocus([]);
     const dataError = {
@@ -153,6 +155,7 @@ export default function Register() {
                 (error.name && Styles.InputError) ||
                   (focus.name && Styles.InputFocus),
               ]}
+              value={name}
               placeholder="Nome Completo"
               returnKeyType={"next"}
               onFocus={() => {
@@ -182,7 +185,11 @@ export default function Register() {
               ref={(input) => {
                 setNextCpf(input);
               }}
-              onChangeText={(text) => setCpf(text)}
+              keyboardType="numeric"
+              value={cpf}
+              onChangeText={(text) => {
+                setCpf(cpfMask(text));
+              }}
               onSubmitEditing={() => {
                 nextEmail.focus();
                 setFocus([]);
@@ -194,6 +201,7 @@ export default function Register() {
                 (error.email && Styles.InputError) ||
                   (focus.email && Styles.InputFocus),
               ]}
+              value={email}
               placeholder="E-mail"
               returnKeyType={"next"}
               onFocus={() => {
@@ -228,7 +236,10 @@ export default function Register() {
                 nextPassword.focus();
                 setFocus([]);
               }}
-              onChangeText={(text) => setPhone(text)}
+              value={phone}
+              onChangeText={(text) => {
+                setPhone(foneMask(text));
+              }}
             />
             {error.phone && <TextError>{message.phone}</TextError>}
             <Input
@@ -236,6 +247,7 @@ export default function Register() {
                 (error.password && Styles.InputError) ||
                   (focus.password && Styles.InputFocus),
               ]}
+              value={password}
               placeholder="Senha"
               secureTextEntry={true}
               returnKeyType={"next"}
@@ -260,6 +272,7 @@ export default function Register() {
               ]}
               placeholder="Confirmar Senha"
               secureTextEntry={true}
+              value={confirmePassword}
               onFocus={() => {
                 setError([]);
                 setFocus({ confirmePassword: true });

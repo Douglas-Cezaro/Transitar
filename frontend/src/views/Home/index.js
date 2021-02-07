@@ -1,9 +1,8 @@
 import React from "react";
-import { Text } from "react-native";
 import {
   Container,
-  ContainerTitle,
-  Title,
+  ContainerImage,
+  ViewImage,
   ContainerSubTitle,
   SubTitle,
   ContainerCard,
@@ -15,6 +14,7 @@ import {
 } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 
+const Logo = require("../../../assets/images/Logo.png");
 const ImageReport = require("../../../assets/images/ImageReport.png");
 const ImageConductor = require("../../../assets/images/ImageConductor.png");
 
@@ -25,16 +25,20 @@ export default function Profile() {
     navigation.navigate("Login");
   };
 
+  const handledReport = () => {
+    navigation.navigate("Report");
+  };
+
   return (
     <Container>
-      <ContainerTitle>
-        <Title>Transitar</Title>
-      </ContainerTitle>
+      <ContainerImage>
+        <ViewImage source={Logo} />
+      </ContainerImage>
       <ContainerSubTitle>
         <SubTitle>Qual tipo de Recurso você procura?</SubTitle>
       </ContainerSubTitle>
       <ContainerCard>
-        <Card style={Styles.CardStyle}>
+        <Card style={Styles.CardStyle} onPress={handledReport}>
           <CardContent>
             <CardImage source={ImageReport} />
             <CardText>Reportar</CardText>
