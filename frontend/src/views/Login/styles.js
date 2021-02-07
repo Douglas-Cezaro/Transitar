@@ -13,11 +13,10 @@ export const ContainerImage = styled.View`
 
 export const ViewImage = styled.Image`
   width: 100%;
-  height: 250px;
 `;
 
 export const ContainerTitle = styled.View`
-  top: 10%;
+  top: 2%;
   align-items: center;
 `;
 
@@ -31,13 +30,13 @@ export const Scroller = styled.ScrollView`
 `;
 
 export const Form = styled.SafeAreaView`
-  margin-top: 20%;
+  margin-top: 15%;
   flex: 1;
   align-items: center;
   justify-content: center;
 `;
 export const Input = styled.TextInput`
-  margin-top: 5%;
+  margin-top: 2%;
   width: 85%;
   height: 60px;
   background: #fafafa;
@@ -97,7 +96,7 @@ export const BtnText = styled.Text`
 `;
 
 export const ContainerRecoverPassword = styled.View`
-  margin-top: 10%;
+  padding-top: 2%;
 `;
 
 export const BtnRecoverPassword = styled.TouchableOpacity``;

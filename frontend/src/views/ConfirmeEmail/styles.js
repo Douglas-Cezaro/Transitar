@@ -26,13 +26,12 @@ export const ContainerImage = styled.View`
   flex: 1;
 `;
 
-export const ViewImage = styled.Image`
-  width: 350px;
-  height: 300px;
-`;
+export const ViewImage = styled.Image``;
 
 export const ContainerBtn = styled.View`
   align-items: center;
+  flex: 1;
+  justify-content: center;
 `;
 
 export const BtnBack = styled.TouchableOpacity`

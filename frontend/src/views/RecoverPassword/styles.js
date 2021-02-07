@@ -23,10 +23,7 @@ export const ContainerImage = styled.View`
   width: 100%;
 `;
 
-export const ViewImage = styled.Image`
-  width: 250px;
-  height: 200px;
-`;
+export const ViewImage = styled.Image``;
 
 export const ContainerSubTitle = styled.View`
   top: 15%;
@@ -44,8 +41,7 @@ export const Scroller = styled.ScrollView``;
 
 export const Form = styled.SafeAreaView`
   top: 20%;
-  height: 400px;
-
+  flex: 1;
   align-items: center;
   justify-content: space-between;
 `;
@@ -63,14 +59,13 @@ export const Input = styled.TextInput`
 
 export const TextError = styled.Text`
   margin-top: 2%;
+  margin-bottom: 50%;
   font-family: "RobotoRegular";
   font-size: 16px;
   color: #fd5555;
 `;
 
 export const BtnRecover = styled.TouchableOpacity`
-  margin-top: 5%;
-  margin-bottom: 5%;
   width: 85%;
   height: 60px;
   background: #2d8eff;
@@ -78,7 +73,7 @@ export const BtnRecover = styled.TouchableOpacity`
   border-radius: 100px;
   align-items: center;
   justify-content: center;
-  bottom: 10%;
+  bottom: 35%;
 `;
 
 export const BtnText = styled.Text`

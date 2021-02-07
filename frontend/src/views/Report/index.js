@@ -11,6 +11,7 @@ import {
   Title,
   TitleFeatured,
   ContainerImage,
+  Scroller,
   Form,
   Input,
   BtnCamera,
@@ -115,67 +116,71 @@ export default function Report() {
 
   return (
     <Container>
-      {!close && (
-        <ContainerTitle>
-          <Title>
-            <TitleFeatured>Reporte</TitleFeatured> um problema encontrado no
-            transito da sua cidade!
-          </Title>
-        </ContainerTitle>
-      )}
-      <ContainerImage>
+      <Scroller>
         {!close && (
-          <Animatable.Image
-            source={ImageViewReport}
-            animation="fadeInUp"
-            useNativeDriver
-            style={Styles.ViewImage}
-          />
+          <ContainerTitle>
+            <Title>
+              <TitleFeatured>Reporte</TitleFeatured> um problema encontrado no
+              transito da sua cidade!
+            </Title>
+          </ContainerTitle>
         )}
-      </ContainerImage>
-      <Form>
-        {error && <TextError>{message.description}</TextError>}
-        <Input
-          style={[
-            (error && Styles.InputError) ||
-              (focus.description && Styles.InputFocus),
-          ]}
-          value={description}
-          onFocus={() => {
-            setError(false);
-            setFocus({ description: true });
-          }}
-          onChangeText={(text) => {
-            setError(false);
-            setFocus({ description: true });
-            setDescription(text);
-          }}
-          multiline
-          placeholder="Descrição"
-        />
+        <ContainerImage>
+          {!close && (
+            <Animatable.Image
+              source={ImageViewReport}
+              animation="fadeInUp"
+              useNativeDriver
+              style={Styles.ViewImage}
+            />
+          )}
+        </ContainerImage>
 
-        <BtnCamera
-          style={Styles.ButtonStyle}
-          onPress={() => setModalVisible(true)}
-        >
-          <Entypo name="camera" size={35} color="white" />
-        </BtnCamera>
-        <Label>Fotos</Label>
-        <ContainerUploadedImage>
-          {images.map((image) => {
-            return (
-              <Image
-                source={{ uri: image }}
-                style={Styles.UploadedImage}
-                key={image}
-              />
-            );
-          })}
-        </ContainerUploadedImage>
-        <BtnReport style={Styles.ButtonStyle} onPress={handlerReport}>
-          <BtnText>Reportar</BtnText>
-        </BtnReport>
-      </Form>
+        <Form>
+          {error && <TextError>{message.description}</TextError>}
+          <Input
+            style={[
+              (error && Styles.InputError) ||
+                (focus.description && Styles.InputFocus),
+            ]}
+            value={description}
+            onFocus={() => {
+              setError(false);
+              setFocus({ description: true });
+            }}
+            onChangeText={(text) => {
+              setError(false);
+              setFocus({ description: true });
+              setDescription(text);
+            }}
+            multiline
+            placeholder="Descrição"
+          />
+
+          <BtnCamera
+            style={Styles.ButtonStyle}
+            onPress={() => setModalVisible(true)}
+          >
+            <Entypo name="camera" size={35} color="white" />
+          </BtnCamera>
+          {images.length > 0 && <Label>Fotos</Label>}
+
+          <ContainerUploadedImage>
+            {images.map((image) => {
+              return (
+                <Image
+                  source={{ uri: image }}
+                  style={Styles.UploadedImage}
+                  key={image}
+                />
+              );
+            })}
+          </ContainerUploadedImage>
+          <BtnReport style={Styles.ButtonStyle} onPress={handlerReport}>
+            <BtnText>Reportar</BtnText>
+          </BtnReport>
+        </Form>
+      </Scroller>
       <Modal
         animationType="fade"
         transparent={true}
