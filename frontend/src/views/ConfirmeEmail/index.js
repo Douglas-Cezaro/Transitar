@@ -6,6 +6,7 @@ import {
   ContainerImage,
   ContainerTitle,
   Title,
+  ContainerMain,
   ViewImage,
   ContainerBtn,
   BtnBack,
@@ -49,14 +50,16 @@ export default function ConfirmeEmail() {
           senha!
         </Title>
       </ContainerTitle>
-      <ContainerImage>
-        <ViewImage source={ImageConfirmeEmail} />
-      </ContainerImage>
-      <ContainerBtn>
-        <BtnBack style={Styles.ButtonStyle} onPress={handleBack}>
-          <BtnText>Voltar</BtnText>
-        </BtnBack>
-      </ContainerBtn>
+      <ContainerMain>
+        <ContainerImage>
+          <ViewImage source={ImageConfirmeEmail} />
+        </ContainerImage>
+        <ContainerBtn>
+          <BtnBack style={Styles.ButtonStyle} onPress={handleBack}>
+            <BtnText>Voltar</BtnText>
+          </BtnBack>
+        </ContainerBtn>
+      </ContainerMain>
     </Container>
   );
 }

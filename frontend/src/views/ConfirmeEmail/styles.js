@@ -17,7 +17,12 @@ export const Title = styled.Text`
   margin-left: 10%;
   margin-right: 10%;
   font-family: "AveriaSansLibre_400Regular";
-  font-size: 24px;
+  font-size: 20px;
+`;
+
+export const ContainerMain = styled.View`
+  justify-content: space-between;
+  flex: 1;
 `;
 
 export const ContainerImage = styled.View`
@@ -30,13 +35,10 @@ export const ViewImage = styled.Image``;
 
 export const ContainerBtn = styled.View`
   align-items: center;
-  flex: 1;
   justify-content: center;
 `;
 
 export const BtnBack = styled.TouchableOpacity`
-  margin-top: 5%;
-  margin-bottom: 5%;
   width: 85%;
   height: 60px;
   background: #2d8eff;
@@ -44,7 +46,7 @@ export const BtnBack = styled.TouchableOpacity`
   border-radius: 100px;
   align-items: center;
   justify-content: center;
-  bottom: 10%;
+  bottom: 50%;
 `;
 
 export const BtnText = styled.Text`
