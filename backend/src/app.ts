@@ -5,6 +5,7 @@ import * as cors from "cors";
 //importando arquivo de rota
 import loginRouter from "./routers/login.router";
 import userRouter from "./routers/user.router";
+import resetPasswordRouter from "./routers/resetPassword.router";
 
 class App {
   public express: express.Application;
@@ -24,6 +25,7 @@ class App {
   private routes(): void {
     this.express.use("/login", loginRouter);
     this.express.use("/user", userRouter);
+    this.express.use("/forgotPassword", resetPasswordRouter);
   }
 }
 

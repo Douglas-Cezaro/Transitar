@@ -1,14 +1,17 @@
 const nodemailer = require("nodemailer");
 const emailConfig = require("../mail/config.mail.json");
 
+require("dotenv/config");
+
 class email {
-  private trasnporter = nodemailer.createTransport({
+
+  public trasnporter = nodemailer.createTransport({
     host: emailConfig.gmail.host,
     port: emailConfig.gmail.port,
     secure: emailConfig.gmail.secure,
     auth: {
       user: process.env.USERNAME_EMAIL,
-      pass: process.env.PASSWORD_EMAIL,
+      pass: process.env.PASSWORD_EMAIL
     },
   });
 
@@ -17,8 +20,8 @@ class email {
       .sendMail({
         from: "<>",
         to: email,
-        subject: "Projeto PET",
-        text: "Mensagem Automatica de PET ",
+        subject: "TRANSITAR",
+        text: "MESAGEM AUTOMÁTICA DE TRANSITAR",
         html: msg,
       })
       .then((message) => {
