@@ -3,7 +3,7 @@ import { StatusBar } from "expo-status-bar";
 import { ActivityIndicator, View } from "react-native";
 import Routes from "./src/routers/MainStack";
 import { useFonts } from "expo-font";
-
+import Loading from "./src/components/loading";
 export default function App() {
   let [fontsLoaded] = useFonts({
     AveriaSansLibre_300Light: require("./assets/fonts/AveriaSansLibre-Light.ttf"),
@@ -18,18 +18,7 @@ export default function App() {
   });
   if (!fontsLoaded) {
     // TODO: vai ser ajustado quando for implementado animations
-    return (
-      <View
-        style={{
-          alignItems: "center",
-          textAlign: "center",
-          justifyContent: "center",
-          flex: 1,
-        }}
-      >
-        <ActivityIndicator size="large" color="#000" />
-      </View>
-    );
+    return <Loading />;
   }
 
   return (
