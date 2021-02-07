@@ -8,7 +8,7 @@ export const Container = styled.SafeAreaView`
 `;
 
 export const ContainerTitle = styled.View`
-  top: 10%;
+  top: 7%;
   align-items: center;
 `;
 
@@ -30,6 +30,8 @@ export const ContainerImage = styled.View`
   align-items: center;
   top: 7%;
 `;
+
+export const Scroller = styled.ScrollView``;
 
 export const Form = styled.SafeAreaView`
   flex: 1;

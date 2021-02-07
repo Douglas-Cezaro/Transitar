@@ -19,12 +19,13 @@ export const Scroller = styled.ScrollView`
 `;
 
 export const Form = styled.SafeAreaView`
+  top: 2%;
   height: 100%;
   align-items: center;
   justify-content: center;
 `;
 export const Input = styled.TextInput`
-  margin-top: 5%;
+  margin-top: 2%;
   width: 85%;
   height: 60px;
   background: #fafafa;
@@ -47,7 +48,7 @@ export const TextError = styled.Text`
 `;
 
 export const BtnRegister = styled.TouchableOpacity`
-  margin-top: 10%;
+  margin-top: 5%;
   margin-bottom: 5%;
   width: 85%;
   height: 60px;
@@ -62,10 +63,10 @@ export const BtnRegister = styled.TouchableOpacity`
 export const Styles = StyleSheet.create({
   ButtonStyle: {
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 5 },
+    shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    elevation: 10,
+    elevation: 5,
     zIndex: 1,
   },
   InputError: {

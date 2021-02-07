@@ -9,6 +9,7 @@ import {
   Card,
   Styles,
   CardContent,
+  CardContainerImage,
   CardImage,
   CardText,
 } from "./styles";
@@ -40,14 +41,18 @@ export default function Profile() {
       <ContainerCard>
         <Card style={Styles.CardStyle} onPress={handledReport}>
           <CardContent>
-            <CardImage source={ImageReport} />
+            <CardContainerImage style={{ height: "280%" }}>
+              <CardImage source={ImageReport} />
+            </CardContainerImage>
             <CardText>Reportar</CardText>
           </CardContent>
         </Card>
         <Card style={Styles.CardStyle} onPress={handleLogin}>
           <CardContent>
             <CardText>Condutor</CardText>
-            <CardImage source={ImageConductor} />
+            <CardContainerImage style={{ height: "210%" }}>
+              <CardImage source={ImageConductor} />
+            </CardContainerImage>
           </CardContent>
         </Card>
       </ContainerCard>
