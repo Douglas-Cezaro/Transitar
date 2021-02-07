@@ -12,6 +12,7 @@ import Ranking from "../views/Ranking";
 import RecoverPassword from "../views/RecoverPassword";
 import ConfirmeEmail from "../views/ConfirmeEmail";
 import Report from "../views/Report";
+import Settings from "../views/Settings";
 import MainTab from "../routers/MainTab";
 
 const Stack = createStackNavigator();
@@ -19,7 +20,7 @@ const Stack = createStackNavigator();
 export default () => (
   <NavigationContainer>
     <Stack.Navigator
-      initialRouteName="Home"
+      initialRouteName="MainTab"
       screenOptions={{
         headerShown: false,
       }}
@@ -34,6 +35,7 @@ export default () => (
       <Stack.Screen name="History" component={History} />
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="Ranking" component={Ranking} />
+      <Stack.Screen name="Settings" component={Settings} />
       <Stack.Screen name="MainTab" component={MainTab} />
     </Stack.Navigator>
   </NavigationContainer>
