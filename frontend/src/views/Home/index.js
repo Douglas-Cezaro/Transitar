@@ -1,8 +1,8 @@
 import React from "react";
 import {
   Container,
-  ContainerTitle,
-  Title,
+  ContainerImage,
+  ViewImage,
   ContainerSubTitle,
   SubTitle,
   ContainerCard,
@@ -14,6 +14,7 @@ import {
 } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 
+const Logo = require("../../../assets/images/Logo.png");
 const ImageReport = require("../../../assets/images/ImageReport.png");
 const ImageConductor = require("../../../assets/images/ImageConductor.png");
 
@@ -30,9 +31,9 @@ export default function Profile() {
 
   return (
     <Container>
-      <ContainerTitle>
-        <Title>Transitar</Title>
-      </ContainerTitle>
+      <ContainerImage>
+        <ViewImage source={Logo} />
+      </ContainerImage>
       <ContainerSubTitle>
         <SubTitle>Qual tipo de Recurso você procura?</SubTitle>
       </ContainerSubTitle>
