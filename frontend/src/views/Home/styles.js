@@ -7,14 +7,14 @@ export const Container = styled.SafeAreaView`
   flex: 1;
 `;
 
-export const ContainerTitle = styled.View`
-  align-items: center;
+export const ContainerImage = styled.View`
   top: 7%;
+  align-items: center;
 `;
 
-export const Title = styled.Text`
-  font-family: "AveriaSansLibre_400Regular";
-  font-size: 35px;
+export const ViewImage = styled.Image`
+  width: 150px;
+  height: 165px;
 `;
 
 export const ContainerSubTitle = styled.View`
