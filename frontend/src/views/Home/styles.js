@@ -10,15 +10,14 @@ export const Container = styled.SafeAreaView`
 export const ContainerImage = styled.View`
   top: 7%;
   align-items: center;
+  justify-content: center;
+  height: 20%;
 `;
 
-export const ViewImage = styled.Image`
-  width: 150px;
-  height: 165px;
-`;
+export const ViewImage = styled.Image``;
 
 export const ContainerSubTitle = styled.View`
-  margin-top: 30%;
+  margin-top: 15%;
   align-items: center;
 `;
 
@@ -30,17 +29,19 @@ export const SubTitle = styled.Text`
 export const ContainerCard = styled.View`
   flex: 1;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   margin-bottom: 30%;
 `;
 
 export const Card = styled.TouchableOpacity`
-  margin-top: 15%;
+  margin-top: 5%;
+  margin-bottom: 5%;
   width: 85%;
   height: 35%;
   background: #696880;
   border-radius: 15px;
   justify-content: center;
+  flex: 1;
 `;
 
 export const CardContent = styled.View`
@@ -49,7 +50,14 @@ export const CardContent = styled.View`
   justify-content: center;
 `;
 
-export const CardImage = styled.Image``;
+export const CardContainerImage = styled.View`
+  flex: 1;
+  align-items: center;
+`;
+
+export const CardImage = styled.Image`
+  flex: 1;
+`;
 
 export const CardText = styled.Text`
   margin-left: 10%;
@@ -63,10 +71,13 @@ export const CardText = styled.Text`
 export const Styles = StyleSheet.create({
   CardStyle: {
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 5 },
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
     shadowOpacity: 1,
     shadowRadius: 2,
-    elevation: 15,
+    elevation: 9,
     zIndex: 1,
   },
 });
