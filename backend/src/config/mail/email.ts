@@ -18,7 +18,7 @@ class email {
   public sendMail(email, msg) {
     this.trasnporter
       .sendMail({
-        from: "<>",
+        from: process.env.USERNAME_EMAIL,
         to: email,
         subject: "TRANSITAR",
         text: "MESAGEM AUTOMÁTICA DE TRANSITAR",

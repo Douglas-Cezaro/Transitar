@@ -6,6 +6,7 @@ import * as cors from "cors";
 import loginRouter from "./routers/login.router";
 import userRouter from "./routers/user.router";
 import resetPasswordRouter from "./routers/resetPassword.router";
+import reportRouter from "./routers/report.router";
 
 class App {
   public express: express.Application;
@@ -26,6 +27,7 @@ class App {
     this.express.use("/login", loginRouter);
     this.express.use("/user", userRouter);
     this.express.use("/forgotPassword", resetPasswordRouter);
+    this.express.use("/report", reportRouter);
   }
 }
 
