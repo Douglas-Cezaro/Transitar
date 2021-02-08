@@ -1,4 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import { userBalanceEntity } from "./userBalance.entity";
+import { punctuatedRoutesEntity } from "./punctuatedRoutes.entity";
+import { balanceConsumedEntity } from "./balanceConsumed.entity";
 
 @Entity({ name: "users" })
 export class UserEntity {
@@ -10,7 +13,7 @@ export class UserEntity {
 
   @Column({ nullable: false })
   cpf: String;
-  
+
   @Column({ nullable: false })
   email: String;
 
@@ -25,5 +28,14 @@ export class UserEntity {
 
   @Column({ nullable: false, type: "datetime" })
   dataReset: Date;
+
+  @OneToMany(type => userBalanceEntity, balance => balance.user, { onDelete: "CASCADE" })
+  balance: userBalanceEntity[];
+
+  @OneToMany(type => punctuatedRoutesEntity, punctuated => punctuated.user, { onDelete: "CASCADE" })
+  punctuated: punctuatedRoutesEntity[];
+
+  @OneToMany(type => balanceConsumedEntity, consumed => consumed.user, { onDelete: "CASCADE" })
+  consumed: balanceConsumedEntity[];
   
 }
