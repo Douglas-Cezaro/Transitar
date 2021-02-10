@@ -7,6 +7,7 @@ import loginRouter from "./routers/login.router";
 import userRouter from "./routers/user.router";
 import resetPasswordRouter from "./routers/resetPassword.router";
 import reportRouter from "./routers/report.router";
+import evaluateRouteRouter from "./routers/evaluateRoute.Router";
 
 class App {
   public express: express.Application;
@@ -28,6 +29,7 @@ class App {
     this.express.use("/user", userRouter);
     this.express.use("/forgotPassword", resetPasswordRouter);
     this.express.use("/report", reportRouter);
+    this.express.use("/evaluateroute", evaluateRouteRouter);
   }
 }
 

@@ -1,7 +1,6 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { balanceConsumedEntity } from "./balanceConsumed.entity";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity({ name: "establishment" })
+@Entity({ name: "establishments" })
 export class establishmentEntity {
 
     @PrimaryGeneratedColumn()
@@ -9,7 +8,4 @@ export class establishmentEntity {
 
     @Column({ nullable: false })
     name: string;
-
-    @OneToMany(type => balanceConsumedEntity, consumed => consumed.user, { onDelete: "CASCADE" })
-    consumed: balanceConsumedEntity[];
 }

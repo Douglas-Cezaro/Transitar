@@ -58,7 +58,7 @@ class resetPassword {
                 from: process.env.USERNAME_EMAIL,
                 to: user.email,
                 subject: "TRANSITAR",
-                text: "MESAGEM AUTOMÁTICA DE TRANSITAR",
+                text: "MENSAGEM AUTOMÁTICA DE TRANSITAR",
                 html: 'Use esse link para redefinir sua senha : http://localhost:3000/forgotPassword/' + TokenReset,
             }).then((message) => {
                 //console.log(message);
