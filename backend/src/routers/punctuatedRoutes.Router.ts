@@ -1,5 +1,5 @@
 import { Router } from "express";
-import evaluateRouteController from "../controller/evaluateRoute.controller";
+import punctuatedRoutesController from "../controller/punctuatedRoutes.controller";
 import validToken from "../middlewares/auth.middlewares";
 
 class Routes {
@@ -9,9 +9,9 @@ class Routes {
         this.router = Router();
         this.init();
     }
-
+    
     private init() {
-        this.router.post("/", [validToken.authMiddlewares], evaluateRouteController.evaluateRoute);
+        this.router.get("/:id([0-9]+)", [validToken.authMiddlewares], punctuatedRoutesController.findByUser);
     }
 }
 

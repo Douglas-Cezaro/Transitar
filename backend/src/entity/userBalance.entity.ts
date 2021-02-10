@@ -2,12 +2,12 @@ import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "t
 import { UserEntity } from "./user.entity";
 
 @Entity({ name: "userbalance" })
-export class userBalanceEntity {
+export class UserBalanceEntity {
 
     @PrimaryGeneratedColumn()
     id: Number;
 
-    @ManyToOne(type => UserEntity, { eager: true, nullable: false })
+    @ManyToOne(type => UserEntity, {nullable: false })
     @JoinColumn({ name: 'userId' })
     user: UserEntity;
 

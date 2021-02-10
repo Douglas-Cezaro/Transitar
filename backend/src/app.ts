@@ -8,6 +8,7 @@ import userRouter from "./routers/user.router";
 import resetPasswordRouter from "./routers/resetPassword.router";
 import reportRouter from "./routers/report.router";
 import evaluateRouteRouter from "./routers/evaluateRoute.Router";
+import punctuatedRoutesRouter from "./routers/punctuatedRoutes.Router";
 
 class App {
   public express: express.Application;
@@ -30,6 +31,7 @@ class App {
     this.express.use("/forgotPassword", resetPasswordRouter);
     this.express.use("/report", reportRouter);
     this.express.use("/evaluateroute", evaluateRouteRouter);
+    this.express.use("/punctuatedroutes", punctuatedRoutesRouter);
   }
 }
 
