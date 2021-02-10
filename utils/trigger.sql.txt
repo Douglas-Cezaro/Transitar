@@ -1,0 +1,15 @@
+CREATE DEFINER=`root`@`localhost` TRIGGER recalc_balance
+AFTER INSERT ON punctuatedroutes
+FOR EACH ROW
+begin
+	declare exitUser int;
+	declare balance_old double;
+	select count(*) into exitUser FROM userbalance where userId = new.userId;
+
+	if(exitUser > 0) then	
+		SELECT SUM(balance) into balance_old FROM userbalance WHERE userid = new.userId;
+		update userbalance set balance = balance_old + new.value ;
+	else
+		insert into userbalance values(null, new.value, new.userId);
+	end if;
+end;

@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
 import { UserEntity } from "../entity/user.entity";
+import { UserBalanceEntity } from "../entity/userBalance.entity";
 import GenToken from "../config/generateToken";
 
 const bcrypt = require("bcryptjs");
@@ -79,12 +80,27 @@ class UsuarioController {
             const id = req.params.id;
             //Busca registro pelo ID
             const user = await getRepository(UserEntity).findOne(id);
+
             //Se não encontrar, devolve erro 404
             if (!user) {
                 res.status(404).send({ error: "Usuário não encontrado" });
                 return;
             }
-            res.send(user);
+
+            //Carrega pontuação do usuário
+            const balanceData = await getRepository(UserBalanceEntity)
+                .createQueryBuilder()
+                .where('userid = :userid')
+                .setParameters({ userid: id })
+                .getMany();
+
+            let balance = [];
+            if (balanceData) {
+                balance = balanceData
+            }
+
+            res.send({ user, balance });
+
         } catch (error) {
             res.status(500).send(error);
         }

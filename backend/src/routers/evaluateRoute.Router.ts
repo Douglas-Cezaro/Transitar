@@ -11,7 +11,7 @@ class Routes {
     }
 
     private init() {
-        this.router.post("/",/*[validToken}*/ evaluateRouteController.evaluateRoute);
+        this.router.post("/", [validToken.authMiddlewares], evaluateRouteController.evaluateRoute);
     }
 }
 
