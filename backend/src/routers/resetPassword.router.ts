@@ -1,7 +1,6 @@
 import { Router } from "express";
 import resetPasswordController from "../controller/resetPassword.controller";
 
-
 class Routes {
     public router: Router;
 

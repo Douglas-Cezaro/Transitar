@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { UserEntity } from "./user.entity";
 
 @Entity({ name: "punctuatedroutes" })
@@ -7,7 +7,8 @@ export class punctuatedRoutesEntity {
     @PrimaryGeneratedColumn()
     id: Number;
 
-    @ManyToOne(type => UserEntity, { onDelete: "CASCADE" })
+    @ManyToOne(type => UserEntity, { eager: true, nullable: false})
+    @JoinColumn({ name: 'userId' })
     user: UserEntity;
 
     @Column()

@@ -21,7 +21,7 @@ class email {
         from: process.env.USERNAME_EMAIL,
         to: email,
         subject: "TRANSITAR",
-        text: "MESAGEM AUTOMÁTICA DE TRANSITAR",
+        text: "MENSAGEM AUTOMÁTICA DE TRANSITAR",
         html: msg,
       })
       .then((message) => {

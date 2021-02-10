@@ -1,5 +1,6 @@
 import { Router } from "express";
-import loginController from "../controller/login.controller";
+import evaluateRouteController from "../controller/evaluateRoute.controller";
+import validToken from "../middlewares/auth.middlewares";
 
 class Routes {
     public router: Router;
@@ -10,7 +11,7 @@ class Routes {
     }
 
     private init() {
-        this.router.post("/", loginController.login);
+        this.router.post("/",/*[validToken}*/ evaluateRouteController.evaluateRoute);
     }
 }
 
