@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { KeyboardAvoidingView } from "react-native";
+import { KeyboardAvoidingView, AsyncStorage } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import {
   Container,
@@ -23,6 +23,7 @@ import {
   BtnRegisterText,
   TextError,
 } from "./styles";
+import Api from "../../api/index";
 
 const ImageLogin = require("../../../assets/images/imageLogin.png");
 
@@ -36,7 +37,7 @@ export default function Login() {
   const [message, setMessage] = useState([]);
   const navigation = useNavigation();
 
-  const handlerApp = () => {
+  const handlerApp = async () => {
     setFocus([]);
     if (user.trim() === "") {
       setErrorUser(true);
@@ -52,7 +53,30 @@ export default function Login() {
 
       setMessage(data);
     } else {
-      navigation.navigate("MainTab");
+      const data = {
+        username: user,
+        password: password,
+      };
+      let res = await (await Api.post("/login", data)).data;
+      if (res.error) {
+        console.log("Entrou");
+        if (res.error === "Usúario não encontrado!") {
+          const data = {
+            user: "Usúario não encontrado!",
+          };
+          setErrorUser(true);
+          setMessage(data);
+        } else {
+          const data = {
+            password: "Senha incorreta",
+          };
+          setErrorPassword(true);
+          setMessage(data);
+        }
+      } else {
+        await AsyncStorage.setItem("token", res.token);
+        navigation.navigate("MainTab");
+      }
     }
   };
 

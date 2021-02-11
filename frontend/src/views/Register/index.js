@@ -16,6 +16,7 @@ import {
   TextError,
 } from "./styles";
 import { cpfMask, foneMask } from "../../utils/mask";
+import api from "../../api";
 
 const ImageRegister = require("../../../assets/images/ImageConductor.png");
 
@@ -133,7 +134,25 @@ export default function Register() {
 
       setMessage(data);
     } else {
-      navigation.navigate("MainTab");
+      const save = async () => {
+        const user = {
+          fullName: "teste",
+          cpf: 10222404981,
+          email: email,
+          phone: 99999999999,
+          password: password,
+        };
+        console.log(user);
+        await api
+          .post("/user", user)
+          .then((data) => {
+            navigation.navigate("MainTab");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
+      save();
     }
   };
   return (
