@@ -27,9 +27,13 @@ class evaluateRouteController {
         try {
             const { ltStart, LgSatrt, timeStart, ltEnd, lgEnd, timeEnd } = req.body;
 
+            //Remover os nanosegundos
+            const _convDataStart = String(timeStart).substr(0, 10);
 
-            var _timeStart = new Date(timeStart * 1000);
-            var _timeEnd = new Date(timeEnd * 1000);
+            const _convDataEnd = String(timeEnd).substr(0, 10);
+
+            var _timeStart = new Date(<any>_convDataStart * 1000);
+            var _timeEnd = new Date(<any>_convDataEnd * 1000);
 
             //Calcula tempo de viagem percorrido e transforma em segundo para confrontar com API
             const _travel_time = ((<any>_timeEnd - <any>_timeStart) / 1000);
@@ -93,8 +97,6 @@ class evaluateRouteController {
                 }).catch(err => {
                     res.status(500).send({ status: false, message: '', data: [], err });
                 });
-
-
 
             } else {
                 // Não Aplica pontução!
