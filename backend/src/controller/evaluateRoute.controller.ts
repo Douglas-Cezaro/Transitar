@@ -25,7 +25,7 @@ const BASEURL_GOOGLEMAPS = 'https://maps.googleapis.com/maps/api/directions/json
 class evaluateRouteController {
     public async evaluateRoute(req: Request, res: Response) {
         try {
-            const { ltStart, LgSatrt, timeStart, ltEnd, lgEnd, timeEnd } = req.body;
+            const { userId, ltStart, LgSatrt, timeStart, ltEnd, lgEnd, timeEnd } = req.body;
 
             //Remover os nanosegundos
             const _convDataStart = String(timeStart).substr(0, 10);
@@ -67,7 +67,7 @@ class evaluateRouteController {
                 const _result = roundT(_points);
 
                 //Carrega Usuario 
-                const user = await getRepository(UserEntity).findOne({ id: 1 }); // HOJE ESTA FIXO PARA DOUGLAS TESTAR BY: GUILHERME PIRES
+                const user = await getRepository(UserEntity).findOne({ id: userId });
 
                 //Insere registro na tabela de “punctuatedRoutes”
                 const punctuatedRoutes = {
