@@ -8,7 +8,7 @@ export class balanceConsumedEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(type => UserEntity, { eager: true, nullable: false})
+    @ManyToOne(type => UserEntity, { nullable: false})
     @JoinColumn({ name: 'userId' })
     user: UserEntity;
 
