@@ -18,7 +18,7 @@
 </p>
 
 # About 🧾
-Transitar é um app com estrutura gamicada que utiliza de ferramentas da psicologia e sociologia para atingir o objetivo de reduzir o número de sinistros no trânsito.
+Transitar é um app com estrutura gamificada que utiliza de ferramentas da psicologia e sociologia para atingir o objetivo de reduzir o número de sinistros no trânsito.
 
 Temos foco em 2 usuários, motoristas de automóveis e de motocicletas, eles juntos, são responsáveis por maioria avassaladora dos acidentes.
 
