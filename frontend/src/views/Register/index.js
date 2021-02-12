@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { KeyboardAvoidingView, Keyboard } from "react-native";
+import { KeyboardAvoidingView, Keyboard, AsyncStorage } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import * as Animatable from "react-native-animatable";
 
@@ -57,6 +57,17 @@ export default function Register() {
   };
 
   const handlerApp = () => {
+    const cpfReplace = cpf
+      .replace(".", "")
+      .replace("-", "")
+      .replace("/", "")
+      .replace(".", "");
+    const phoneReplace = phone
+      .replace("-", "")
+      .replace("(", "")
+      .replace(")", "")
+      .replace(" ", "");
+
     setFocus([]);
     const dataError = {
       name: false,
@@ -136,22 +147,26 @@ export default function Register() {
     } else {
       const save = async () => {
         const user = {
-          fullName: "teste",
-          cpf: 10222404981,
+          fullName: name,
+          cpf: cpfReplace,
           email: email,
-          phone: 99999999999,
+          phone: phoneReplace,
           password: password,
         };
         console.log(user);
-        await api
-          .post("/user", user)
-          .then((data) => {
-            navigation.navigate("MainTab");
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        const response = await (
+          await api
+            .post("/user", user)
+            .then((data) => {
+              navigation.navigate("MainTab", { screen: "Profile" });
+            })
+            .catch((err) => {
+              console.log(err);
+            })
+        ).data;
+        await AsyncStorage.setItem("token", response.token);
       };
+
       save();
     }
   };
