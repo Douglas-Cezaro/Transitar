@@ -11,6 +11,7 @@ import {
   SubTitle,
   Form,
   Input,
+  ContainerBtn,
   BtnRecover,
   BtnText,
   TextError,
@@ -70,9 +71,11 @@ export default function RecoverPassword() {
           }}
         />
         {errorUser && <TextError>{message.user}</TextError>}
-        <BtnRecover style={Styles.ButtonStyle} onPress={handlerRecover}>
-          <BtnText>Enviar</BtnText>
-        </BtnRecover>
+        <ContainerBtn>
+          <BtnRecover style={Styles.ButtonStyle} onPress={handlerRecover}>
+            <BtnText>Enviar</BtnText>
+          </BtnRecover>
+        </ContainerBtn>
       </Form>
     </Container>
   );

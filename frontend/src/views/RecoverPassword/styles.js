@@ -36,12 +36,9 @@ export const SubTitle = styled.Text`
   font-family: "AveriaSansLibre_400Regular";
   font-size: 20px;
 `;
-
-export const Scroller = styled.ScrollView``;
-
 export const Form = styled.SafeAreaView`
   top: 20%;
-  flex: 1;
+  height: 20%;
   align-items: center;
   justify-content: space-between;
 `;
@@ -59,21 +56,26 @@ export const Input = styled.TextInput`
 
 export const TextError = styled.Text`
   margin-top: 2%;
-  margin-bottom: 50%;
+  margin-bottom: 10%;
   font-family: "RobotoRegular";
   font-size: 16px;
   color: #fd5555;
 `;
 
+export const ContainerBtn = styled.View`
+  align-items: center;
+  top: 20%;
+  width: 100%;
+`;
+
 export const BtnRecover = styled.TouchableOpacity`
+  background: #2d8eff;
   width: 85%;
   height: 60px;
-  background: #2d8eff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 100px;
   align-items: center;
   justify-content: center;
-  bottom: 35%;
 `;
 
 export const BtnText = styled.Text`
