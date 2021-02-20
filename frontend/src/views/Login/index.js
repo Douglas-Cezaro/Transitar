@@ -59,7 +59,6 @@ export default function Login() {
       };
       let res = await (await Api.post("/login", data)).data;
       if (res.error) {
-        console.log("Entrou");
         if (res.error === "Usúario não encontrado!") {
           const data = {
             user: "Usúario não encontrado!",
@@ -75,7 +74,7 @@ export default function Login() {
         }
       } else {
         await AsyncStorage.setItem("token", res.token);
-        navigation.navigate("MainTab");
+        navigation.navigate("MainTab", { screen: "Profile" });
       }
     }
   };
