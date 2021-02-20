@@ -25,7 +25,7 @@ export default function Preload() {
           navigation.navigate("MainTab", { screen: "Profile" });
         }
       } else {
-        navigation.navigate("Login");
+        navigation.navigate("Home");
       }
     };
     checkToken();
