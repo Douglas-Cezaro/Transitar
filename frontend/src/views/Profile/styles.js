@@ -28,20 +28,28 @@ export const ContentCardMain = styled.View`
   border-radius: 20px;
   width: 90%;
   height: 65%;
+  align-items: center;
 `;
 
 export const ContainerImage = styled.View`
   top: -25%;
   align-items: center;
+  flex-direction: column;
+  width: 67%;
+  height: 51%;
 `;
 
 export const ContainerSettings = styled.TouchableOpacity`
+  top: -35%;
+  left: 18%;
+  width: 18%;
+  height: 37%;
+`;
+
+export const Settings = styled.View`
   background: #2d8eff;
-  top: -22%;
-  left: 14%;
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
+  flex: 1;
+  border-radius: 50px;
   background: #ffb00b;
   border: 4px solid #f5f9f9;
   align-items: center;
@@ -49,13 +57,13 @@ export const ContainerSettings = styled.TouchableOpacity`
 `;
 
 export const ViewImage = styled.Image`
-  width: 150px;
-  height: 150px;
+  width: 50%;
+  height: 100%;
   border-radius: 100px;
 `;
 export const ContainerCardMainNameUser = styled.View`
-  bottom: 38%;
   align-items: center;
+  bottom: 20%;
 `;
 
 export const CardMainNameUser = styled.Text`
@@ -67,7 +75,6 @@ export const CardMainNameUser = styled.Text`
 export const ContainerScore = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  bottom: 20%;
 `;
 
 export const ViewImageProfile = styled.Image`
@@ -115,7 +122,12 @@ export const CardContent = styled.View`
   flex-direction: row;
   justify-content: center;
 `;
-
+export const ContentCard = styled.View`
+  height: 50%;
+  width: 100%;
+  justify-content: center;
+  bottom: 10%;
+`;
 export const CardContainerImage = styled.View`
   flex: 1;
   align-items: center;

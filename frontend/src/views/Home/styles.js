@@ -60,8 +60,8 @@ export const CardImage = styled.Image`
 `;
 
 export const CardText = styled.Text`
-  margin-left: 10%;
-  margin-right: 5%;
+  margin-left: 8%;
+  margin-right: 2%;
   font-family: "AveriaSansLibre_400Regular";
   font-size: 35px;
   color: #fff;

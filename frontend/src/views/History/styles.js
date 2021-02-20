@@ -93,4 +93,5 @@ export const CardScore = styled.View``;
 export const CardScoreText = styled.Text`
   font-family: "AveriaSansLibre_400Regular";
   font-size: 32px;
+  text-decoration: underline;
 `;

@@ -87,6 +87,10 @@ export const Styles = StyleSheet.create({
   InputSuccess: {
     borderColor: "rgba(0, 197, 102, 0.5)",
   },
+  Title: {
+    top: "2%",
+    alignItems: "center",
+  },
 });
 
 export const BtnText = styled.Text`

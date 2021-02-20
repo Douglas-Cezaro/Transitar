@@ -41,7 +41,7 @@ export default function Profile() {
       <ContainerCard>
         <Card style={Styles.CardStyle} onPress={handledReport}>
           <CardContent>
-            <CardContainerImage style={{ height: "280%" }}>
+            <CardContainerImage style={{ height: "290%" }}>
               <CardImage source={ImageReport} />
             </CardContainerImage>
             <CardText>Reportar</CardText>
@@ -50,7 +50,7 @@ export default function Profile() {
         <Card style={Styles.CardStyle} onPress={handleLogin}>
           <CardContent>
             <CardText>Condutor</CardText>
-            <CardContainerImage style={{ height: "210%" }}>
+            <CardContainerImage style={{ height: "212%", right: "15%" }}>
               <CardImage source={ImageConductor} />
             </CardContainerImage>
           </CardContent>

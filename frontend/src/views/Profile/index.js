@@ -10,6 +10,7 @@ import {
   ContainerImage,
   ViewImage,
   ContainerSettings,
+  Settings,
   ContainerCardMainNameUser,
   CardMainNameUser,
   ContainerScore,
@@ -19,6 +20,7 @@ import {
   ScoreTitle,
   Value,
   ContainerCard,
+  ContentCard,
   Card,
   CardContent,
   CardContainerImage,
@@ -52,26 +54,31 @@ export default function Profile() {
           <ContainerImage>
             <ViewImage source={ImageUser} />
             <ContainerSettings onPress={handledSettings}>
-              <Ionicons name="settings-sharp" size={28} color="white" />
+              <Settings>
+                <Ionicons name="settings-sharp" size={20} color="white" />
+              </Settings>
             </ContainerSettings>
           </ContainerImage>
-          <ContainerCardMainNameUser>
-            <CardMainNameUser>Angelica Jackson</CardMainNameUser>
-          </ContainerCardMainNameUser>
-          <ContainerScore>
-            <ViewImageProfile source={ImageProfile}></ViewImageProfile>
-            <Separator />
-            <Score>
-              <ScoreTitle>Pontos Disponíveis</ScoreTitle>
-              <Value>300 pts</Value>
-            </Score>
-          </ContainerScore>
+
+          <ContentCard>
+            <ContainerCardMainNameUser>
+              <CardMainNameUser>Angelica Jackson</CardMainNameUser>
+            </ContainerCardMainNameUser>
+            <ContainerScore>
+              <ViewImageProfile source={ImageProfile}></ViewImageProfile>
+              <Separator />
+              <Score>
+                <ScoreTitle>Pontos Disponíveis</ScoreTitle>
+                <Value>300 pts</Value>
+              </Score>
+            </ContainerScore>
+          </ContentCard>
         </ContentCardMain>
       </ContainerCardMain>
       <ContainerCard>
         <Card style={Styles.CardStyle} onPress={handledReport}>
           <CardContent>
-            <CardContainerImage style={{ height: "280%" }}>
+            <CardContainerImage style={{ height: "300%" }}>
               <CardImage source={ImageReport} />
             </CardContainerImage>
             <CardText>Reportar</CardText>
