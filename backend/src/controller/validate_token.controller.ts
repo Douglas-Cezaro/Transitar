@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-class loginController {
+class validateTokenController {
     public async validate(req: Request, res: Response) {
         try {
 
@@ -13,4 +13,4 @@ class loginController {
     }
 }
 
-export default new loginController();
+export default new validateTokenController();
