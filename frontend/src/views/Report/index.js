@@ -3,8 +3,9 @@ import * as Animatable from "react-native-animatable";
 import { Alert, Modal, Image, Keyboard, View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Entypo, FontAwesome, AntDesign } from "@expo/vector-icons";
-const ImageViewReport = require("../../../assets/images/ImageViewReport.png");
 import * as ImagePicker from "expo-image-picker";
+import GeoLocation from "../../utils/location";
+import Api from "../../api/index";
 import {
   Container,
   ContainerTitle,
@@ -29,6 +30,7 @@ import {
   ModalContainerBtn,
   ModalBtn,
 } from "./styles";
+const ImageViewReport = require("../../../assets/images/ImageViewReport.png");
 
 export default function Report() {
   const [description, setDescription] = useState("");
@@ -99,7 +101,7 @@ export default function Report() {
     setModalVisible(false);
   };
 
-  const handlerReport = () => {
+  const handlerReport = async () => {
     setFocus([]);
     if (description.trim() === "") {
       setError(true);
@@ -108,9 +110,27 @@ export default function Report() {
       };
       setMessage(data);
     } else {
-      setDescription("");
-      setImages([]);
-      navigation.navigate("Home");
+      const { latitude, longitude } = (await GeoLocation()).coords;
+      const data = new FormData();
+
+      data.append("description", description);
+      data.append("latitude", String(latitude));
+      data.append("longitude", String(longitude));
+
+      images.forEach((image, index) => {
+        data.append("images", {
+          name: `image_${index}.jpg`,
+          type: "image/jpg",
+          uri: image,
+        });
+      });
+
+      await Api.post("/report", data)
+        .then((response) => console.log(response))
+        .catch((error) => console.log(error));
+      // setDescription("");
+      // setImages([]);
+      // navigation.navigate("Home");
     }
   };
 
