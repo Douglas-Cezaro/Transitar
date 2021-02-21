@@ -10,6 +10,7 @@ import reportRouter from "./routers/report.router";
 import evaluateRouteRouter from "./routers/evaluateRoute.router";
 import punctuatedRoutesRouter from "./routers/punctuatedRoutes.router";
 import validateTokenRouter from "./routers/validate_token.router";
+import ranking from "./routers/ranking.router";
 
 class App {
   public express: express.Application;
@@ -34,6 +35,7 @@ class App {
     this.express.use("/evaluateroute", evaluateRouteRouter);
     this.express.use("/punctuatedroutes", punctuatedRoutesRouter);
     this.express.use("/validatetoken", validateTokenRouter);
+    this.express.use("/ranking", ranking);
   }
 }
 
