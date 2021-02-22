@@ -42,7 +42,7 @@ export const ContainerImage = styled.View`
 export const ContainerSettings = styled.TouchableOpacity`
   top: -35%;
   left: 18%;
-  width: 18%;
+  width: 19%;
   height: 37%;
 `;
 

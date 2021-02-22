@@ -14,7 +14,6 @@ import {
   CardText,
 } from "./styles";
 import { useNavigation } from "@react-navigation/native";
-
 const Logo = require("../../../assets/images/Logo.png");
 const ImageReport = require("../../../assets/images/ImageReport.png");
 const ImageConductor = require("../../../assets/images/ImageConductor.png");

@@ -1,6 +1,7 @@
 import * as express from "express";
 import * as bodyParser from "body-parser";
 import * as cors from "cors";
+import * as path from "path";
 
 //importando arquivo de rota
 import loginRouter from "./routers/login.router";
@@ -35,7 +36,14 @@ class App {
     this.express.use("/evaluateroute", evaluateRouteRouter);
     this.express.use("/punctuatedroutes", punctuatedRoutesRouter);
     this.express.use("/validatetoken", validateTokenRouter);
+
+    this.express.use(
+      "/uploads",
+      express.static(path.join(__dirname, "..", "uploads"))
+    );
+
     this.express.use("/ranking", ranking);
+
   }
 }
 

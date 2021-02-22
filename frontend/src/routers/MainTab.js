@@ -12,7 +12,10 @@ const Tab = createBottomTabNavigator();
 
 export default function MainTab() {
   return (
-    <Tab.Navigator tabBar={(props) => <CustomTabBar {...props} />}>
+    <Tab.Navigator
+      initialRouteName="Profile"
+      tabBar={(props) => <CustomTabBar {...props} />}
+    >
       <Tab.Screen name="History" component={History} />
       <Tab.Screen name="Profile" component={Profile} />
       <Tab.Screen name="Ranking" component={Ranking} />

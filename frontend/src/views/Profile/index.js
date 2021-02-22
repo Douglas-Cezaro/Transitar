@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Ionicons } from "@expo/vector-icons";
+import { AsyncStorage } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import {
   Container,
@@ -34,7 +35,17 @@ const ImageProfile = require("../../../assets/images/ImageProfile.png");
 const ImageReport = require("../../../assets/images/ImageReport.png");
 
 export default function Profile() {
+  const [user, setUser] = useState({});
   const navigation = useNavigation();
+
+  const fetchUser = async () => {
+    const data = await AsyncStorage.getItem("user");
+    setUser(JSON.parse(data));
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
   const handledReport = () => {
     navigation.navigate("Report");
@@ -52,7 +63,7 @@ export default function Profile() {
       <ContainerCardMain style={Styles.CardStyle}>
         <ContentCardMain>
           <ContainerImage>
-            <ViewImage source={ImageUser} />
+            <ViewImage source={user.url ? { uri: user.url } : ImageUser} />
             <ContainerSettings onPress={handledSettings}>
               <Settings>
                 <Ionicons name="settings-sharp" size={20} color="white" />
@@ -62,7 +73,7 @@ export default function Profile() {
 
           <ContentCard>
             <ContainerCardMainNameUser>
-              <CardMainNameUser>Angelica Jackson</CardMainNameUser>
+              <CardMainNameUser>{user.name}</CardMainNameUser>
             </ContainerCardMainNameUser>
             <ContainerScore>
               <ViewImageProfile source={ImageProfile}></ViewImageProfile>

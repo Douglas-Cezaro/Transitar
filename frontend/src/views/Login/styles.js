@@ -91,6 +91,12 @@ export const Styles = StyleSheet.create({
     top: "2%",
     alignItems: "center",
   },
+  btnActive: {
+    backgroundColor: "#2d8eff",
+  },
+  btnInactive: {
+    backgroundColor: "rgba(45, 142, 255, 0.7)",
+  },
 });
 
 export const BtnText = styled.Text`

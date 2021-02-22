@@ -1,5 +1,5 @@
-import React from "react";
-import { Text } from "react-native";
+import React, { useState } from "react";
+import { AsyncStorage } from "react-native";
 import {
   Container,
   ContainerTitle,
@@ -35,6 +35,14 @@ import {
 const ImageUser = require("../../../assets/images/ImageUser.png");
 
 export default function Ranking() {
+  const [user, setUser] = useState({});
+
+  const fetchUser = async () => {
+    const data = await AsyncStorage.getItem("user");
+    setUser(JSON.parse(data));
+  };
+
+  fetchUser();
   return (
     <Container>
       <ContainerTitle>
@@ -46,11 +54,13 @@ export default function Ranking() {
             <CardContentLeft>
               <CardContentLeftUp>
                 <ContainerImageCard>
-                  <ViewImageCard source={ImageUser} />
+                  <ViewImageCard
+                    source={user.url ? { uri: user.url } : ImageUser}
+                  />
                 </ContainerImageCard>
                 <Position>6°</Position>
               </CardContentLeftUp>
-              <NameUser>Angelica Jackson</NameUser>
+              <NameUser>{user.name}</NameUser>
             </CardContentLeft>
             <Separator />
             <CardContentRight>

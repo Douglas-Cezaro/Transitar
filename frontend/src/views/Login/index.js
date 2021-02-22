@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Keyboard, AsyncStorage } from "react-native";
+import { Keyboard, AsyncStorage, ActivityIndicator } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { useNavigation } from "@react-navigation/native";
 import {
@@ -37,8 +37,11 @@ export default function Login() {
   const [message, setMessage] = useState([]);
   const navigation = useNavigation();
   const [close, setClose] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handlerApp = async () => {
+    setLoading(true);
+
     setFocus([]);
     if (user.trim() === "") {
       setErrorUser(true);
@@ -46,11 +49,13 @@ export default function Login() {
         user: "Preencha o campo e-mail/CPF",
       };
       setMessage(data);
+      setLoading(false);
     } else if (password.trim() === "") {
       setErrorPassword(true);
       const data = {
         password: "Preencha o campo de senha",
       };
+      setLoading(false);
 
       setMessage(data);
     } else {
@@ -58,25 +63,37 @@ export default function Login() {
         username: user,
         password: password,
       };
-      let res = await (await Api.post("/login", data)).data;
-      if (res.error) {
-        if (res.error === "Usúario não encontrado!") {
-          const data = {
-            user: "Usúario não encontrado!",
-          };
-          setErrorUser(true);
-          setMessage(data);
-        } else {
-          const data = {
-            password: "Senha incorreta",
-          };
-          setErrorPassword(true);
-          setMessage(data);
-        }
-      } else {
-        await AsyncStorage.setItem("token", res.token);
-        navigation.navigate("MainTab", { screen: "Profile" });
-      }
+      await Api.post("/login", data)
+        .then(async (response) => {
+          const res = response.data;
+          if (res.error) {
+            if (res.error === "Usúario não encontrado!") {
+              const data = {
+                user: "Usúario não encontrado!",
+              };
+              setErrorUser(true);
+              setMessage(data);
+              setLoading(false);
+            } else {
+              const data = {
+                password: "Senha incorreta",
+              };
+              setErrorPassword(true);
+              setMessage(data);
+              setLoading(false);
+            }
+          } else {
+            setLoading(false);
+            const data = {
+              id: res.user.id,
+              name: res.user.fullName,
+            };
+            await AsyncStorage.setItem("token", res.token);
+            await AsyncStorage.setItem("user", JSON.stringify(data));
+            navigation.navigate("MainTab", { screen: "Profile" });
+          }
+        })
+        .catch((error) => console.log(error));
     }
   };
 
@@ -162,8 +179,19 @@ export default function Login() {
           />
           {errorPassword && <TextError>{message.password}</TextError>}
 
-          <BtnLogin style={Styles.ButtonStyle} onPress={handlerApp}>
-            <BtnText>Entrar</BtnText>
+          <BtnLogin
+            style={
+              (Styles.ButtonStyle,
+              [loading ? Styles.btnInactive : Styles.btnActive])
+            }
+            disabled={loading}
+            onPress={handlerApp}
+          >
+            {loading ? (
+              <ActivityIndicator size="small" color="#FFF" />
+            ) : (
+              <BtnText>Entrar</BtnText>
+            )}
           </BtnLogin>
           <ContainerRecoverPassword>
             <BtnRecoverPassword onPress={handleRecoverPassword}>
