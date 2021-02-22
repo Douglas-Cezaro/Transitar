@@ -123,6 +123,12 @@ export const Styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
+  btnActive: {
+    backgroundColor: "#2d8eff",
+  },
+  btnInactive: {
+    backgroundColor: "rgba(45, 142, 255, 0.7)",
+  },
 });
 
 export const BtnText = styled.Text`

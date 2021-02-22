@@ -67,6 +67,7 @@ export const Position = styled.Text`
 `;
 
 export const NameUser = styled.Text`
+  text-align: center;
   margin-top: 10%;
   font-family: "RobotoBold";
   font-size: 15px;

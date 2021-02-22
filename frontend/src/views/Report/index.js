@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from "react";
 import * as Animatable from "react-native-animatable";
-import { Alert, Modal, Image, Keyboard, View, Text } from "react-native";
+import {
+  Alert,
+  Modal,
+  Image,
+  Keyboard,
+  View,
+  Text,
+  ActivityIndicator,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Entypo, FontAwesome, AntDesign } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
@@ -40,6 +48,7 @@ export default function Report() {
   const [error, setError] = useState(false);
   const [focus, setFocus] = useState([]);
   const [message, setMessage] = useState([]);
+  const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -102,6 +111,7 @@ export default function Report() {
   };
 
   const handlerReport = async () => {
+    setLoading(true);
     setFocus([]);
     if (description.trim() === "") {
       setError(true);
@@ -109,6 +119,7 @@ export default function Report() {
         description: "Preencha o campo descrição",
       };
       setMessage(data);
+      setLoading(false);
     } else {
       const { latitude, longitude } = (await GeoLocation()).coords;
       const data = new FormData();
@@ -126,11 +137,12 @@ export default function Report() {
       });
 
       await Api.post("/report", data)
-        .then((response) => console.log(response))
-        .catch((error) => console.log(error));
-      // setDescription("");
-      // setImages([]);
-      // navigation.navigate("Home");
+        .then((response) => {
+          setLoading(false), Alert.alert("", "Reportado com sucesso");
+        })
+        .catch((error) => Alert.alert("", "Erro ao tentar mandar o reporte"));
+      setDescription("");
+      setImages([]);
     }
   };
 
@@ -196,8 +208,19 @@ export default function Report() {
               );
             })}
           </ContainerUploadedImage>
-          <BtnReport style={Styles.ButtonStyle} onPress={handlerReport}>
-            <BtnText>Reportar</BtnText>
+          <BtnReport
+            style={
+              (Styles.ButtonStyle,
+              [loading ? Styles.btnInactive : Styles.btnActive])
+            }
+            disabled={loading}
+            onPress={handlerReport}
+          >
+            {loading ? (
+              <ActivityIndicator size="small" color="#FFF" />
+            ) : (
+              <BtnText>Reportar</BtnText>
+            )}
           </BtnReport>
         </Form>
       </Scroller>

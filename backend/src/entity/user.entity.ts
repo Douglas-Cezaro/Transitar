@@ -1,5 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
-
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  JoinColumn,
+} from "typeorm";
+import Image from "./imageUser.entity";
 @Entity({ name: "users" })
 export class UserEntity {
   @PrimaryGeneratedColumn()
@@ -26,4 +32,9 @@ export class UserEntity {
   @Column({ nullable: false, type: "datetime" })
   dataReset: Date;
 
+  @OneToMany(() => Image, (image) => image.user, {
+    cascade: ["insert", "update"],
+  })
+  @JoinColumn({ name: "user_id" })
+  images: Image[];
 }
