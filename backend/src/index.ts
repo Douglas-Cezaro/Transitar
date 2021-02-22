@@ -7,8 +7,8 @@ createConnection()
   .then((connection) => {
     const server = http.createServer(app);
 
-    server.listen(3000, () => {
-      console.log("Application is running on port 3000 !!");
+    server.listen(process.env.PORT, () => {
+      console.log(`Application is running on port ${process.env.PORT} !!`);
     });
   })
   .catch((error) => {
