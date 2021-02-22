@@ -84,7 +84,7 @@ class resetPassword {
             });
 
             if (!user) {
-                res.status(400).send({ message: "Link Inválido" });
+                res.status(404).send({ message: "Link Inválido" });
             }
 
             //valida se o token ainda é valido
