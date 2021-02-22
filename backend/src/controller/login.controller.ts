@@ -39,10 +39,13 @@ class loginController {
         .where("user_id = :id", { id: user.id })
         .getOne();
 
-      image.path = `http://${process.env.IP}:3000/uploads/${image.path}`;
+      if (image) {
+        image.path = `http://${process.env.IP}:${process.env.PORT}/uploads/${image.path}`;
+      }
 
       return res.status(200).send({ user, token, image });
     } catch (error) {
+      console.log(error);
       res.status(500).send(error);
     }
   }
