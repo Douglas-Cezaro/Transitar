@@ -1,0 +1,65 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Form =================  */
+.form {
+  top: 20%;
+  width: 50%;
+  height: 500px;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 37px;
+  position: absolute;
+}
+
+/* Logo =================  */
+.containerLogo {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  top: -10%;
+}
+
+.logo {
+  width: 200px;
+  height: 200px;
+}
+
+/* Logo Transitar =================  */
+.containerTransitar {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  top: -10%;
+}
+
+.transitar {
+  width: 100px;
+  height: 100px;
+}
+
+/* Title =================  */
+.containerTitle {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  top: 5%;
+  text-align: center;
+}
+
+.title {
+  font-family: "Averia Sans Libre";
+}
+
+/* Responsive =================  */
+@media (max-width: 800px) {
+  .form {
+    width: 90%;
+    height: 500px;
+  }
+}
