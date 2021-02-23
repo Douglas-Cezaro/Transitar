@@ -40,7 +40,7 @@ class loginController {
         .getOne();
 
       if (image) {
-        image.path = `http://${process.env.IP}:${process.env.PORT}/uploads/${image.path}`;
+        image.path = `http://${process.env.IP}/uploads/${image.path}`;
       }
 
       return res.status(200).send({ user, token, image });
