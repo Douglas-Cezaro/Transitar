@@ -113,6 +113,7 @@ class resetPassword {
     try {
       const { password, password2, hash } = req.body;
       console.log(hash);
+
       const user = await getRepository(UserEntity).findOne({
         where: {
           resetToken: hash,
@@ -143,7 +144,7 @@ class resetPassword {
         .createQueryBuilder()
         .update(UserEntity)
         .set({ resetToken: "", password: newpassword })
-        .where("id = :id", { id: 1 })
+        .where("id = :id", { id: user.id })
         .execute();
       // // Fim
 
