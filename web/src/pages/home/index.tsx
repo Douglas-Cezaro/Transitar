@@ -38,11 +38,11 @@ export default function Home() {
       toast.info("Preencha o campo Nova Senha");
       setLoading(false);
     }
-    if (confirmepassword.trim() === "") {
+    else if (confirmepassword.trim() === "") {
       toast.info("Preencha o campo Confirme nova senha");
       setLoading(false);
     }
-    if (password.trim() !== confirmepassword.trim()) {
+    else if (password.trim() !== confirmepassword.trim()) {
       toast.info(
         "O campo nova senha e confirme nova senha precisam ser iguais"
       );
