@@ -93,7 +93,9 @@ class UsuarioController {
 
       const token = GenToken.generatorToken({ id: user.id });
 
-      return res.send({ user, token });
+      const url = `http://${process.env.IP}/uploads/${dataImage.path}`;
+
+      return res.send({ user, token, url });
     } catch (error) {
       res.status(500).send(error);
     }
