@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { KeyboardAvoidingView } from "react-native";
+import { ActivityIndicator } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import {
   Container,
@@ -17,6 +17,7 @@ import {
   TextError,
   Styles,
 } from "./styles";
+import Api from "../../api/index";
 
 const ImageRecover = require("../../../assets/images/ImageRecover.png");
 
@@ -26,17 +27,36 @@ export default function RecoverPassword() {
   const [focus, setFocus] = useState([]);
   const [message, setMessage] = useState([]);
   const navigation = useNavigation();
+  const [loading, setLoading] = useState(false);
 
   const handlerRecover = () => {
     setFocus([]);
+    setLoading(true);
     if (user.trim() === "") {
       setErrorUser(true);
       const data = {
         user: "Preencha o campo e-mail/CPF",
       };
       setMessage(data);
+      setLoading(false);
     } else {
-      navigation.navigate("ConfirmeEmail");
+
+      Api.post("forgotPassword", { username: user }).then(resp => {
+        if (resp.status == 200) {
+          navigation.navigate("ConfirmeEmail");
+        } else {
+          console.log(resp.data.error);
+          setErrorUser(true);
+          const data = {
+            user: resp.data.error,
+          };
+          setMessage(data);
+        }
+        setLoading(false);
+      }).catch(err => {
+        console.log(err);
+        setLoading(false);
+      })
     }
   };
 
@@ -58,7 +78,7 @@ export default function RecoverPassword() {
         <Input
           style={[
             (errorUser && Styles.InputError) ||
-              (focus.user && Styles.InputFocus),
+            (focus.user && Styles.InputFocus),
           ]}
           placeholder="E-mail/CPF"
           onFocus={() => {
@@ -72,11 +92,21 @@ export default function RecoverPassword() {
         />
         {errorUser && <TextError>{message.user}</TextError>}
         <ContainerBtn>
-          <BtnRecover style={Styles.ButtonStyle} onPress={handlerRecover}>
-            <BtnText>Enviar</BtnText>
+          <BtnRecover
+            style={
+              (Styles.ButtonStyle,
+                [loading ? Styles.btnInactive : Styles.btnActive])
+            }
+            disabled={loading}
+            onPress={handlerRecover}>
+            {loading ? (
+              <ActivityIndicator size="small" color="#FFF" />
+            ) : (
+                <BtnText>Enviar</BtnText>
+              )}
           </BtnRecover>
         </ContainerBtn>
       </Form>
-    </Container>
+    </Container >
   );
 }

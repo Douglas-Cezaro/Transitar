@@ -101,4 +101,10 @@ export const Styles = StyleSheet.create({
   InputFocus: {
     borderColor: "rgba(45, 142, 255, 0.7)",
   },
+  btnActive: {
+    backgroundColor: "#2d8eff",
+  },
+  btnInactive: {
+    backgroundColor: "rgba(45, 142, 255, 0.7)",
+  },
 });
