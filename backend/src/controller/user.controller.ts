@@ -85,7 +85,7 @@ class UsuarioController {
       await getRepository(UserEntity).save(user);
 
       const dataImage = {
-        user_id: user.id,
+        user: user.id,
         path: "userDefault.png",
       };
 
