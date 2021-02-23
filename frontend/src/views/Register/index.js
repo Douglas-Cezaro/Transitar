@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { KeyboardAvoidingView, Keyboard, AsyncStorage } from "react-native";
+import {
+  KeyboardAvoidingView,
+  Keyboard,
+  AsyncStorage,
+  ActivityIndicator,
+  Alert,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import * as Animatable from "react-native-animatable";
 
@@ -36,6 +42,7 @@ export default function Register() {
   const [focus, setFocus] = useState([]);
   const [message, setMessage] = useState([]);
   const [close, setClose] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -57,6 +64,7 @@ export default function Register() {
   };
 
   const handlerApp = () => {
+    setLoading(true);
     const cpfReplace = cpf
       .replace(".", "")
       .replace("-", "")
@@ -90,6 +98,7 @@ export default function Register() {
       };
 
       setMessage(data);
+      setLoading(false);
     } else if (cpf.trim() === "") {
       dataError.cpf = true;
       setError(dataError);
@@ -108,6 +117,7 @@ export default function Register() {
       };
 
       setMessage(data);
+      setLoading(false);
     } else if (phone.trim() === "") {
       dataError.phone = true;
       setError(dataError);
@@ -117,6 +127,7 @@ export default function Register() {
       };
 
       setMessage(data);
+      setLoading(false);
     } else if (password.trim() === "") {
       dataError.password = true;
       setError(dataError);
@@ -126,6 +137,7 @@ export default function Register() {
       };
 
       setMessage(data);
+      setLoading(false);
     } else if (confirmePassword.trim() === "") {
       dataError.confirmePassword = true;
       setError(dataError);
@@ -135,6 +147,7 @@ export default function Register() {
       };
 
       setMessage(data);
+      setLoading(false);
     } else if (confirmePassword.trim() !== password.trim()) {
       dataError.diffPassword = true;
       setError(dataError);
@@ -144,8 +157,10 @@ export default function Register() {
       };
 
       setMessage(data);
+      setLoading(false);
     } else {
       const save = async () => {
+        setLoading(true);
         const user = {
           fullName: name,
           cpf: cpfReplace,
@@ -153,18 +168,48 @@ export default function Register() {
           phone: phoneReplace,
           password: password,
         };
-        console.log(user);
-        const response = await (
-          await api
-            .post("/user", user)
-            .then((data) => {
-              navigation.navigate("MainTab", { screen: "Profile" });
-            })
-            .catch((err) => {
-              console.log(err);
-            })
-        ).data;
-        await AsyncStorage.setItem("token", response.token);
+
+        await api
+          .post("/user", user)
+          .then(async (response) => {
+            if (response.status === 202) {
+              const res = response.data;
+              const data = {
+                id: res.user.id,
+                name: res.user.fullName,
+                url: res.url,
+              };
+              await AsyncStorage.setItem("token", res.token);
+              await AsyncStorage.setItem("user", JSON.stringify(data));
+
+              navigation.reset({
+                routes: [{ name: "MainTab" }],
+              });
+            }
+            if (response.status === 406) {
+              if (response.data.error === "O CPF já está em utilização!") {
+                dataError.cpf = true;
+                setError(dataError);
+                const data = {
+                  cpf: response.data.error,
+                };
+                setMessage(data);
+              } else {
+                dataError.email = true;
+                setError(dataError);
+
+                const data = {
+                  email: response.data.error,
+                };
+                setMessage(data);
+              }
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+            setLoading(false);
+            Alert.alert("Erro!", "Verifique se está conectado a internet!!");
+          });
       };
 
       save();
@@ -259,6 +304,7 @@ export default function Register() {
               ]}
               placeholder="Telefone"
               returnKeyType={"next"}
+              keyboardType="numeric"
               onFocus={() => {
                 setError([]);
                 setFocus({ phone: true });
@@ -322,8 +368,19 @@ export default function Register() {
             {error.diffPassword && (
               <TextError>{message.diffPassword}</TextError>
             )}
-            <BtnRegister style={Styles.ButtonStyle} onPress={handlerApp}>
-              <BtnText>Registrar</BtnText>
+            <BtnRegister
+              style={
+                (Styles.ButtonStyle,
+                [loading ? Styles.btnInactive : Styles.btnActive])
+              }
+              disabled={loading}
+              onPress={handlerApp}
+            >
+              {loading ? (
+                <ActivityIndicator size="small" color="#FFF" />
+              ) : (
+                <BtnText>Registrar</BtnText>
+              )}
             </BtnRegister>
           </Form>
         </Scroller>
