@@ -17,8 +17,11 @@ export default function Routes() {
         <Route path="/success">
           <Success />
         </Route>
-        <Route path="/">
+        <Route path="/:hash">
           <Home />
+        </Route>
+        <Route path="/">
+          <NotFound />
         </Route>
       </Switch>
     </BrowserRouter>
