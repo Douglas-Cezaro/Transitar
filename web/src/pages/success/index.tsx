@@ -9,7 +9,6 @@ type Props = {
 };
 export default function Success() {
   const location = useLocation<Props>();
-  console.log(location);
   let history = useHistory();
   return (
     <div className="container">

@@ -4,6 +4,7 @@ import { ReactComponent as Transitar } from "../../assets/transitar.svg";
 import { useParams, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import PulseLoader from "react-spinners/PulseLoader";
 
 import "react-toastify/dist/ReactToastify.css";
 import api from "../../api";
@@ -11,6 +12,7 @@ import api from "../../api";
 export default function Home() {
   const { hash } = useParams<Record<string, string | undefined>>();
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const [confirmepassword, setConfirmepassword] = useState("");
   let history = useHistory();
 
@@ -26,21 +28,25 @@ export default function Home() {
         }
       })
       .catch((error) => {
-        console.log("Erro");
+        toast.error("Erro, entre em contato com o administrador do sistema");
       });
   }, []);
 
   const handleSubmit = async () => {
+    setLoading(true);
     if (password.trim() === "") {
       toast.info("Preencha o campo Nova Senha");
+      setLoading(false);
     }
-    if (confirmepassword.trim() === "") {
+    else if (confirmepassword.trim() === "") {
       toast.info("Preencha o campo Confirme nova senha");
+      setLoading(false);
     }
-    if (password.trim() !== confirmepassword.trim()) {
+    else if (password.trim() !== confirmepassword.trim()) {
       toast.info(
         "O campo nova senha e confirme nova senha precisam ser iguais"
       );
+      setLoading(false);
     } else {
       const data = {
         password: password,
@@ -63,8 +69,9 @@ export default function Home() {
           }
         })
         .catch((error) => {
-          console.log("Erro");
+          toast.error("Erro, entre em contato com o administrador do sistema");
         });
+      setLoading(false);
     }
   };
 
@@ -103,8 +110,17 @@ export default function Home() {
           />
         </div>
         <div className="containerBtn">
-          <button className="btn" type="button" onClick={handleSubmit}>
-            Salvar
+          <button
+            className="btn"
+            type="button"
+            disabled={loading}
+            onClick={handleSubmit}
+          >
+            {loading ? (
+              <PulseLoader color="#FFF" loading={loading} size={10} />
+            ) : (
+              "Salvar"
+            )}
           </button>
         </div>
       </form>
