@@ -48,7 +48,7 @@ export default function Profile() {
   }, []);
 
   const handledReport = () => {
-    navigation.navigate("Report");
+    navigation.navigate("Report", { view: "MainTab" });
   };
 
   const handledSettings = () => {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Keyboard, AsyncStorage, ActivityIndicator } from "react-native";
+import { Keyboard, AsyncStorage, ActivityIndicator, Alert } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { useNavigation } from "@react-navigation/native";
 import {
@@ -66,34 +66,42 @@ export default function Login() {
       await Api.post("/login", data)
         .then(async (response) => {
           const res = response.data;
-          if (res.error) {
-            if (res.error === "Usúario não encontrado!") {
-              const data = {
-                user: "Usúario não encontrado!",
-              };
-              setErrorUser(true);
-              setMessage(data);
-              setLoading(false);
-            } else {
-              const data = {
-                password: "Senha incorreta",
-              };
-              setErrorPassword(true);
-              setMessage(data);
-              setLoading(false);
+          if (response.status === 404) {
+            if (res.error) {
+              if (res.error === "Usúario não encontrado!") {
+                const data = {
+                  user: "Usúario não encontrado!",
+                };
+                setErrorUser(true);
+                setMessage(data);
+                setLoading(false);
+              } else {
+                const data = {
+                  password: "Senha incorreta",
+                };
+                setErrorPassword(true);
+                setMessage(data);
+                setLoading(false);
+              }
             }
-          } else {
+          }
+          if (response.status === 200) {
             setLoading(false);
             const data = {
               id: res.user.id,
               name: res.user.fullName,
+              url: res.image.path,
             };
             await AsyncStorage.setItem("token", res.token);
             await AsyncStorage.setItem("user", JSON.stringify(data));
             navigation.navigate("MainTab", { screen: "Profile" });
           }
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          console.log(error);
+          Alert.alert("Erro!", "Verique se está conectado a internet");
+          setLoading(false);
+        });
     }
   };
 
