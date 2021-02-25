@@ -63,7 +63,7 @@ class resetPassword {
           to: user.email,
           subject: "TRANSITAR",
           text: "MENSAGEM AUTOMÁTICA DE TRANSITAR",
-          html: `Use esse link para redefinir sua senha : ${process.env.URL_WEB}/${TokenReset}
+          html: template.html(process.env.URL_WEB + TokenReset),
             `,
         })
         .then((message) => {
