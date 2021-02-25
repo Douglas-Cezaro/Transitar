@@ -12,7 +12,6 @@ const fs = require("fs");
 class UsuarioController {
   public async updateImage(req: Request, res: Response) {
     const id = req.params.id;
-    let { data } = req.body;
 
     const requestImages = req.files as Express.Multer.File[];
 
@@ -26,14 +25,17 @@ class UsuarioController {
       .getOne();
 
     const pathComplete = path.join(__dirname, "..", "..", "uploads");
-    fs.unlink(`${pathComplete}/${pathImage.path}`, (err) => {
-      if (err) {
-        console.error(err);
-        return;
-      }
-    });
 
-    const query = await getRepository(Image)
+    if (pathImage.path != "userDefault.png") {
+      fs.unlink(`${pathComplete}/${pathImage.path}`, (err) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+      });
+    }
+
+    await getRepository(Image)
       .createQueryBuilder()
       .update()
       .set({
@@ -41,8 +43,6 @@ class UsuarioController {
       })
       .where("user_id = :id", { id: id })
       .execute();
-
-    console.log(query);
 
     const result = await getRepository(Image)
       .createQueryBuilder()

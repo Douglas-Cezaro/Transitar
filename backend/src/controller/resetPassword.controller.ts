@@ -64,7 +64,6 @@ class resetPassword {
           subject: "TRANSITAR",
           text: "MENSAGEM AUTOMÁTICA DE TRANSITAR",
           html: template.html(process.env.URL_WEB + TokenReset),
-            `,
         })
         .then((message) => {
           //console.log(message);
@@ -108,6 +107,7 @@ class resetPassword {
     } catch (error) {
       res.status(500).send({ message: error.message });
     }
+  }
 
   public async saveNewPassword(req: Request, res: Response) {
     try {
