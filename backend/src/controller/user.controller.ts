@@ -62,7 +62,7 @@ class UsuarioController {
       });
 
       if (cpfExists) {
-        return res.status(500).send({ error: "O CPF já está em utilização!" });
+        return res.status(406).send({ error: "O CPF já está em utilização!" });
       }
 
       // Valida se o E-mail já esta em Utilização
@@ -71,7 +71,7 @@ class UsuarioController {
       });
 
       if (emailExists) {
-        return res.status(500).send({ error: "E-mail já está em utilização!" });
+        return res.status(406).send({ error: "E-mail já está em utilização!" });
       }
 
       // criptografar senha antes mesmo de inserir ao banco
@@ -95,7 +95,7 @@ class UsuarioController {
 
       const url = `http://${process.env.IP}/uploads/${dataImage.path}`;
 
-      return res.send({ user, token, url });
+      return res.status(202).send({ user, token, url });
     } catch (error) {
       res.status(500).send(error);
     }
