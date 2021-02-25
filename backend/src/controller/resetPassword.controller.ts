@@ -4,6 +4,7 @@ import { getRepository, getConnection } from "typeorm";
 import { UserEntity } from "../entity/user.entity";
 
 import email from "../config/mail/email";
+import template from "../config/mail/template";
 
 const bcrypt = require('bcryptjs');
 
@@ -59,7 +60,7 @@ class resetPassword {
                 to: user.email,
                 subject: "TRANSITAR",
                 text: "MENSAGEM AUTOMÁTICA DE TRANSITAR",
-                html: 'Use esse link para redefinir sua senha : http://localhost:3000/forgotPassword/' + TokenReset,
+                html: template.html( process.env.END_POINT_WEB + TokenReset),
             }).then((message) => {
                 //console.log(message);
                 res.status(200).send({ message: 'OK' });
@@ -106,7 +107,7 @@ class resetPassword {
     public async saveNewPassword(req: Request, res: Response) {
         try {
 
-            const { password, password2, hash} = req.body;
+            const { password, password2, hash } = req.body;
             console.log(hash);
             const user = await getRepository(UserEntity).findOne({
                 where: {
@@ -117,7 +118,7 @@ class resetPassword {
             if (!user) {
                 return res.status(400).send({ message: "Link Inválido" });
             }
-            
+
             //valida se o token ainda é valido
             if (user.dataReset <= (new Date())) {
                 return res.status(500).send({ message: "O código de recuperação expirou!" });
