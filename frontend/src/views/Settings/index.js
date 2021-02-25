@@ -41,7 +41,6 @@ export default function Settings() {
     const dataToken = await AsyncStorage.getItem("token");
     setToken(dataToken);
     setUser(JSON.parse(data));
-    console.log(data);
   };
   useEffect(() => {
     fetchUser();
