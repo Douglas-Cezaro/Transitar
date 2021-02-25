@@ -17,13 +17,25 @@ export default function Preload() {
             Authorization: "Bearer " + token,
           },
         };
-        let res = await Api.get("validatetoken", config);
-        if (res.token) {
-          await AsyncStorage.setItem("token", token);
-          navigation.reset("MainTab", { screen: "Profile" });
-        } else {
-          navigation.navigate("MainTab", { screen: "Profile" });
-        }
+        await Api.get("validatetoken", config)
+          .then(async (response) => {
+            if (response.status === 401) {
+              navigation.reset({
+                routes: [{ name: "Login" }],
+              });
+            }
+            if (response.status === 200) {
+              await AsyncStorage.setItem("token", token);
+              navigation.reset({
+                routes: [{ name: "MainTab" }],
+              });
+            }
+          })
+          .catch((error) => {
+            navigation.reset({
+              routes: [{ name: "MainTab" }],
+            });
+          });
       } else {
         navigation.navigate("Home");
       }

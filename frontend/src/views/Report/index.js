@@ -9,14 +9,16 @@ import {
   Text,
   ActivityIndicator,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { Entypo, FontAwesome, AntDesign } from "@expo/vector-icons";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { Entypo, FontAwesome, AntDesign, Ionicons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 import GeoLocation from "../../utils/location";
+
 import Api from "../../api/index";
 import {
   Container,
   ContainerTitle,
+  BackButton,
   Title,
   TitleFeatured,
   ContainerImage,
@@ -50,6 +52,7 @@ export default function Report() {
   const [message, setMessage] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
+  const route = useRoute();
 
   useEffect(() => {
     Keyboard.addListener("keyboardDidShow", _keyboardDidShow);
@@ -60,6 +63,13 @@ export default function Report() {
       Keyboard.removeListener("keyboardDidHide", _keyboardDidHide);
     };
   }, []);
+
+  const handleGoBack = () => {
+    const router = route.params.view;
+    navigation.reset({
+      routes: [{ name: router }],
+    });
+  };
 
   const _keyboardDidShow = () => {
     setClose(true);
@@ -151,6 +161,9 @@ export default function Report() {
       <Scroller>
         {!close && (
           <ContainerTitle>
+            <BackButton onPress={handleGoBack}>
+              <Ionicons name="arrow-back-outline" size={50} color="#7E8389" />
+            </BackButton>
             <Title>
               <TitleFeatured>Reporte</TitleFeatured> um problema encontrado no
               transito da sua cidade!

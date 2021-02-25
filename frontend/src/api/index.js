@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://negobot.com.br/",
+  baseURL: "https://negobot.com.br",
+  validateStatus: false,
 });
 
 export default api;

@@ -9,7 +9,13 @@ export const Container = styled.SafeAreaView`
 
 export const ContainerTitle = styled.View`
   top: 7%;
-  align-items: center;
+`;
+
+export const BackButton = styled.TouchableOpacity`
+  justify-content: center;
+  left: 7%;
+  height: 50px;
+  color: #7e8389;
 `;
 
 export const Title = styled.Text`

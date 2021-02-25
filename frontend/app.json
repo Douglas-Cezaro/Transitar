@@ -4,10 +4,10 @@
     "slug": "Transitar",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/images/transitarS@2x.png",
     "splash": {
-      "image": "./assets/images/Logo@3x.png",
-      "resizeMode": "contain",
+      "image": "./assets/images/transitarS@3x.png",
+      "resizeMode": "",
       "backgroundColor": "#ffffff"
     },
     "updates": {
