@@ -3,6 +3,7 @@ import { getRepository, getConnection } from "typeorm";
 import { UserEntity } from "../entity/user.entity";
 
 import email from "../config/mail/email";
+import template from "../config/mail/template";
 
 const bcrypt = require("bcryptjs");
 
@@ -62,7 +63,7 @@ class resetPassword {
           to: user.email,
           subject: "TRANSITAR",
           text: "MENSAGEM AUTOMÁTICA DE TRANSITAR",
-          html: `Use esse link para redefinir sua senha : ${process.env.URL_WEB}/${TokenReset}
+          html: template.html(process.env.URL_WEB + TokenReset),
             `,
         })
         .then((message) => {
@@ -107,7 +108,6 @@ class resetPassword {
     } catch (error) {
       res.status(500).send({ message: error.message });
     }
-  }
 
   public async saveNewPassword(req: Request, res: Response) {
     try {
